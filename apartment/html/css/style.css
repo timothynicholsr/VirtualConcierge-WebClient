@@ -1,0 +1,128 @@
+/* Table of Content
+==================================================
+	#Reset & Basics
+	#Basic Styles
+	#Site Styles
+	#Typography
+	#Links
+	#Lists
+	#Images
+	#Buttons
+	#Forms
+	#Misc */
+/* #Reset & Basics 
+================================================== */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;line-height:normal;font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; margin: 0px; padding: 0px;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0;width:100%}
+/* #Basic Styles
+================================================== */
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:auto}
+
+/* #Typography
+================================================== */
+h1,h2,h3,h4,h5,h6{font-weight:400}
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
+.subheader{color:#777}
+p img{margin:0}
+p.lead{font-size:21px;color:#777}
+em{font-style:italic}
+strong{font-weight:700}
+small{font-size:80%}
+blockquote,blockquote p{font-size:17px;line-height:24px;color:#777;font-style:italic}
+blockquote cite{display:block;font-size:12px;color:#555}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited,blockquote cite a:visited{color:#555}
+ul{list-style:none outside}
+ol{list-style:decimal}
+
+/* #Links
+================================================== */
+a, a:visited{text-decoration:none;line-height:inherit;outline:none;-webkit-transition:.4s all ease-in-out;-moz-transition:.4s all ease-in-out;-o-transition:.4s all ease-in-out;transition:.4s all ease-in-out}
+
+
+body {-webkit-font-smoothing: antialiased;font-size:14px;  font-family: Helvetica; ;color:#303030;-webkit-text-size-adjust: 100%; font-weight: 400;}
+
+@font-face {
+  font-family: 'Cardinal-Regular';
+  src: url('fonts/Cardinal-Regular.eot?#iefix') format('embedded-opentype'),  url('fonts/Cardinal-Regular.woff') format('woff'), url('fonts/Cardinal-Regular.ttf')  format('truetype'), url('fonts/Cardinal-Regular.svg#Cardinal-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.wrapper{width: 100%; position: relative;}
+.fix-container{margin:0 auto;max-width:1190px;width:100%; padding:0;background: #3f264e;}
+.fix-container:before,.fix-container:after{content:"";display:table;}
+/*header style*/
+.header{padding: 25px; border-bottom: 5px;}
+.header .topBar {background:url(../images/header-img.jpg) no-repeat top center; background-size:  cover; height: 475px; font-family: 'Cardinal-Regular'; padding-top: 25px;}
+.header .topBar h1{background: rgba(255,255,255,0.6); color: #46403e; padding: 0px; font-size: 76px; text-align: center;}
+.header .bottomBar{color: #fff; padding: 25px 0 0 0; display: inline-block; vertical-align: top; width: 100%;}
+.header .bottomBar .leftBar{float: left; width: 84%; font-size: 25px; text-align: justify;}
+.header .bottomBar .rightBar{float: right; width: 75%; border: 3px solid #fff; width: 165px; height: 165px; border-radius: 150px;}
+.header .bottomBar .rightBar img{max-width: 100%;}
+.contentBox{background:url(../images/content-bg.jpg) no-repeat top center; background-size:  cover; padding: 25px; border-bottom: 5px;}
+.contentBox .navBox{border: 2px solid #fff; display: inline-block; vertical-align: top; width: 100%;}
+.contentBox .navBox li{border: 2px solid #fff; float: left; width: 50%;}
+.contentBox .navBox li a{display: table;height: 130px; vertical-align: middle; color: #fff; font-size: 30px; color: #fff; align-items: center; padding: 0px 40px; width: 100%;}
+.contentBox .navBox li a:hover{background: #3f264e;}
+.contentBox .navBox li span{display: table-cell; vertical-align: middle; padding-left: 10px;}
+.contentBox .navBox li a i{width: 100px; height: 100px; vertical-align: middle; display: table-cell; vertical-align: middle;  background-size: 100% auto !important;}
+.contentBox .navBox li a .home{background:url(../images/home-icon.png) no-repeat center center;}
+.contentBox .navBox li a .taxi{background:url(../images/taxi-icon.png) no-repeat center center;}
+.contentBox .navBox li a .shopping{background:url(../images/shopping.png) no-repeat center center;}
+.contentBox .navBox li a .restaurants{background:url(../images/restaurants-icon.png) no-repeat center center;}
+.contentBox .navBox li a .wifi{background:url(../images/wi-fi.png) no-repeat center center;}
+.contentBox .navBox li a .cafe{background:url(../images/cafe.png) no-repeat center center;}
+.contentBox .navBox li a .transportation{background:url(../images/transportation.png) no-repeat center center;}
+.contentBox .navBox li a .apartment{background:url(../images/apartment.png) no-repeat center center;}
+.contentBox .navBox li a .call{background:url(../images/callus.png) no-repeat center center;}
+.contentBox .navBox li a .medical{background:url(../images/emergencies.png) no-repeat center center;}
+.contentBox .navBox li a .confirmed{background:url(../images/pen.png) no-repeat center center;}
+.contentBox .navBox li a .drug{background:url(../images/drug-stroe.png) no-repeat center center;}
+.footer{padding:25px; display: inline-block; vertical-align: top; width: 100%;}
+.footer .change-lang{float: right;}
+.footer .change-lang > ul li{float: left; margin-left: 10px; position: relative;}
+.footer .change-lang .dropdown > a{background: rgba(255,255,255,0.2); color: #fff; padding:0 30px 0 10px; height: 38px; line-height: 38px; display: inline-block; position: relative;}
+.footer .change-lang .dropdown > a:after{border: 5px solid transparent; border-bottom-color: #fff; position: absolute; content: ""; right: 10px; bottom: 15px;}
+.footer .change-lang .dropdown .submenu{display: none; position: absolute; bottom: 100%; right: 0px; width: 150px; background: #fff;}
+.footer .change-lang .dropdown:hover .submenu{display: block; }
+.footer .change-lang .dropdown .submenu li{ border-bottom: 1px solid #eee;width: 100%; margin: 0px;}
+.footer .change-lang .dropdown .submenu li a{display: block;padding: 7px 10px;}
+.footer .change-lang .dropdown .submenu li a:hover{color: #fff;  background: #3f264e;}
+
+@media (min-width: 991px) and (max-width: 1100px){
+	.header .bottomBar .leftBar{width: 80%; font-size: 23px;}
+}
+@media (min-width: 768px) and (max-width: 990px){
+	.header, .contentBox, .footer{padding: 20px;}
+	.header .topBar{height: 360px}
+	.header .bottomBar{padding-top: 20px;}
+	.header .topBar h1{font-size: 60px;}
+	.header .bottomBar .leftBar{width: 75%; font-size: 18px;}
+	.contentBox .navBox li a{padding:0 20px; font-size: 22px; height: 120px;}
+	.contentBox .navBox li a i{width: 75px; height: 75px}
+}
+@media (max-width:767px){
+	.header, .contentBox, .footer{padding: 10px;}
+	.header .topBar{height: 250px}
+	.header .bottomBar{padding-top: 10px;}
+	.header .topBar h1{font-size: 32px;}
+	.header .bottomBar .leftBar{width: 100%; float: none; padding-bottom: 10px; font-size: 16px;}
+	.header .bottomBar .rightBar{float: none; margin: 0 auto; }
+	.contentBox .navBox, .contentBox .navBox li{border-width:1px;}
+	.contentBox .navBox li a{padding:0 10px; font-size: 16px;}
+	.contentBox .navBox li a i{width: 40px; height: 40px}
+}
+@media (min-width: 480px) and (max-width:767px){
+	.contentBox .navBox li a{height: 80px;}
+	}
+@media (max-width:479px){
+
+	.contentBox .navBox li {width: 100%;}
+	.contentBox .navBox li a{height: 60px;}
+	
+}
