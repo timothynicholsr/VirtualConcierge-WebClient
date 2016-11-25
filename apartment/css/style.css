@@ -54,39 +54,58 @@ body {-webkit-font-smoothing: antialiased;font-size:14px;  font-family: Helvetic
 }
 
 .wrapper{width: 100%; position: relative;}
-.fix-container{margin:0 auto;max-width:1190px;width:100%; padding:0;background: #3f264e;}
 .fix-container:before,.fix-container:after{content:"";display:table;}
 /*header style*/
 .header{padding: 25px; border-bottom: 5px;}
-
+ .header .topBar {background-size:  cover; height: 475px; font-family: 'Cardinal-Regular'; padding-top: 25px;}
 .header .topBar h1{background: rgba(255,255,255,0.6); color: #46403e; padding: 0px; font-size: 76px; text-align: center;}
 .header .bottomBar{color: #fff; padding: 25px 0 0 0; display: inline-block; vertical-align: top; width: 100%;}
 .header .bottomBar .leftBar{float: left; width: 84%; font-size: 25px; text-align: justify;}
 .header .bottomBar .rightBar{float: right; border: 3px solid #fff; width: 165px; height: 165px; border-radius: 150px;overflow:hidden;}
 .header .bottomBar .rightBar img{max-width: 100%; }
-.contentBox .navBox{border: 2px solid #fff; display: inline-block; vertical-align: top; width: 100%;}
+.contentBox{background-size:  cover; padding: 25px; border-bottom: 5px;} 
+.contentBox .navBox{border: 2px solid #fff; display: inline-block; vertical-align: top; width: 100%; position:relative;z-index:1;}
 .contentBox .navBox li{border: 2px solid #fff; float: left; width: 50%;}
 .contentBox .navBox li a{display: table;height: 130px; vertical-align: middle; color: #fff; font-size: 30px; color: #fff; align-items: center; padding: 0px 40px; width: 100%;}
 
 .contentBox .navBox li span{display: table-cell; vertical-align: middle; padding-left: 10px;}
 .contentBox .navBox li a i{width: 100px; height: 100px; vertical-align: middle; display: table-cell; vertical-align: middle;  background-size: 100% auto !important;}
-.contentBox .navBox li a .home{background:url(../images/home-icon.png) no-repeat center center;}
-.contentBox .navBox li a .taxi{background:url(../images/taxi-icon.png) no-repeat center center;}
-.contentBox .navBox li a .shopping{background:url(../images/shopping.png) no-repeat center center;}
-.contentBox .navBox li a .coffee{background:url(../images/restaurants-icon.png) no-repeat center center;}
-.contentBox .navBox li a .wifi{background:url(../images/wi-fi.png) no-repeat center center;}
-.contentBox .navBox li a .face{background:url(../images/cafe.png) no-repeat center center;}
-.contentBox .navBox li a .transportation{background:url(../images/transportation.png) no-repeat center center;}
-.contentBox .navBox li a .apartment{background:url(../images/apartment.png) no-repeat center center;}
-.contentBox .navBox li a .call{background:url(../images/callus.png) no-repeat center center;}
-.contentBox .navBox li a .medical{background:url(../images/emergencies.png) no-repeat center center;}
-.contentBox .navBox li a .pen{background:url(../images/pen.png) no-repeat center center;}
-.contentBox .navBox li a .drug{background:url(../images/drug-stroe.png) no-repeat center center;}
+.contentBox .navBox li a .alarm{background:url(../images/button_icons/alarm@2x.png) no-repeat center center;}
+.contentBox .navBox li a .call{background:url(../images/button_icons/call@2x.png) no-repeat center center;}
+.contentBox .navBox li a .car{background:url(../images/button_icons/car@2x.png) no-repeat center center;}
+.contentBox .navBox li a .checkin{background:url(../images/button_icons/checkin@2x.png) no-repeat center center;}
+.contentBox .navBox li a .coffee{background:url(../images/button_icons/coffee@2x.png) no-repeat center center;}
+.contentBox .navBox li a .conditioner{background:url(../images/button_icons/conditioner@2x.png) no-repeat center center;}
+.contentBox .navBox li a .drugstore{background:url(../images/button_icons/drugstore@2x.png) no-repeat center center;}
+.contentBox .navBox li a .emergency{background:url(../images/button_icons/emergency@2x.png) no-repeat center center;}
+.contentBox .navBox li a .Fish{background:url(../images/button_icons/fish@2x.png) no-repeat center center;}
+.contentBox .navBox li a .generic{background:url(../images/button_icons/generic@2x.png) no-repeat center center;}
+.contentBox .navBox li a .guide{background:url(../images/button_icons/guide@2x.png) no-repeat center center;}
+.contentBox .navBox li a .home{background:url(../images/button_icons/home@2x.png) no-repeat center center;}
+.contentBox .navBox li a .instructions{background:url(../images/button_icons/instructions@2x.png) no-repeat center center;}
+.contentBox .navBox li a .internet{background:url(../images/button_icons/internet@2x.png) no-repeat center center;}
+.contentBox .navBox li a .lock{background:url(../images/button_icons/lock@2x.png) no-repeat center center;}
+.contentBox .navBox li a .miscellaneous{background:url(../images/button_icons/miscellaneous@2x.png) no-repeat center center;}
+.contentBox .navBox li a .oven{background:url(../images/button_icons/oven@2x.png) no-repeat center center;}
+.contentBox .navBox li a .pen{background:url(../images/button_icons/pen.png) no-repeat center center;}
+.contentBox .navBox li a .restaurant{background:url(../images/button_icons/restaurant.png) no-repeat center center;}
+.contentBox .navBox li a .salon{background:url(../images/button_icons/salon.png) no-repeat center center;}
+.contentBox .navBox li a .shopping{background:url(../images/button_icons/shopping@2x.png) no-repeat center center;}
+.contentBox .navBox li a .taxi{background:url(../images/button_icons/taxi@2x.png) no-repeat center center;}
+.contentBox .navBox li a .wifi{background:url(../images/button_icons/wifi@2x.png) no-repeat center center;}
+.contentBox .navBox li a .washing{background:url(../images/button_icons/washing@2x.png) no-repeat center center;}
+.contentBox .navBox li a .transportation{background:url(../images/button_icons/transportation.png) no-repeat center center;}
+
+
+
+
+.contentBox .navBox li a .drug{background:url(../images/button_icons/drug-stroe.png) no-repeat center center;}
+
 .footer{padding:25px; display: inline-block; vertical-align: top; width: 100%;}
 .footer .change-lang{float: right;}
 .footer .change-lang > ul li{float: left; margin-left: 10px; position: relative;}
-.footer .change-lang .dropdown > a{background: rgba(255,255,255,0.2); color: #fff; padding:0 30px 0 10px; height: 38px; line-height: 38px; display: inline-block; position: relative;}
-.footer .change-lang .dropdown > a:after{border: 5px solid transparent; border-bottom-color: #fff; position: absolute; content: ""; right: 10px; bottom: 15px;}
+.footer .change-lang .dropdown > a{background:url(../images/world-img.png) no-repeat 10px center #fff; color: #fff; padding:0px; display: inline-block; position: relative; height:47px; width:82px;}
+.footer .change-lang .dropdown > a:after{border: 7px solid transparent; border-bottom-color: #000; position: absolute; content: ""; right: 10px; bottom: 21px;}
 .footer .change-lang .dropdown .submenu{display: none; position: absolute; bottom: 100%; right: 0px; width: 150px; background: #fff;}
 .footer .change-lang .dropdown:hover .submenu{display: block; }
 .footer .change-lang .dropdown .submenu li{ border-bottom: 1px solid #eee;width: 100%; margin: 0px;}
