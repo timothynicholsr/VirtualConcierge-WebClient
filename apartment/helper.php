@@ -18,6 +18,55 @@ function hex2rgb($hex) {
    $rgb = $r.','.$g.','.$b;
    return $rgb;
 }
+/*
+function code_percantage($code){
+$homepage = file_get_contents('Text_value.txt');
+
+
+$t=explode(' ',$homepage);
+
+
+foreach($t as $val){
+	$t2=explode('-',$val);
+	$data[$t2[1]]=$t2[0];
+}
+return str_replace(' ','',str_replace('%','',$data[$code]))/100;
+}
+*/
+function argb2rgba($color)
+    {
+        $output = 'rgba(0,0,0,1)';
+
+        if (empty($color))
+            return $output;
+
+        if ($color[0] == '#') {
+            $color = substr($color, 1);
+        }
+
+        if (strlen($color) == 8) { //ARGB
+            $opacity = round(hexdec($color[0].$color[1]) / 255, 2);
+            $hex = array($color[2].$color[3], $color[4].$color[5], $color[6].$color[7]);
+            $rgb = array_map('hexdec', $hex);
+            $output = 'rgba(' . implode(",", $rgb) . ',' . $opacity . ')';
+        }
+
+        return $output;
+    }
+
+
+//echo argb2rgba('#7FFFA543');
+/*
+$array=("100%"=>"FF%", 
+		"Ben"=>"FC", 
+		"Joe"=>"43",
+		
+		
+		);
+*/
+
+
+
 
 
 

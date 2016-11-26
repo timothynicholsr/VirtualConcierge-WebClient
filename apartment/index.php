@@ -104,24 +104,22 @@ if(!empty($page->languages))
 	//echo strlen($data['button_background_color']);
 	//echo $data['button_background_color'] ;
 	  if(strlen($data['button_background_color']) >= 7) {
+		//  echo $data['button_background_color'];
      $background_color = substr($data['button_background_color'],0,7);
+      $background_color1 = substr($data['button_background_color'],1,6);
 	  $hex= hex2rgb($background_color);
-      $code = substr($data['button_background_color'],-1);
-      $code.='.'.substr($data['button_background_color'],-2, 1);
+      //$code = substr($data['button_background_color'],-1);
+      $code=substr($data['button_background_color'],-2, 2);
+      $code_c='#'.$code.$background_color1;
+      $rgb_Color=argb2rgba($code_c);
       
    } else {
-    $background_color=$data['button_background_color'];
+    $rgb_Color=$data['button_background_color'];
     $code='';
      $hex='';
    }
+   ?>
    
-if($hex!=''){
-	?>
- .contentBox .navBox:before{content:""; position:absolute;left:0px;top:0px;width:100%;  height:100%;background:rgba(<?php echo $hex?>,<?php echo $code;?>);z-index:-1;}
-	<?php
-}
-	?>
-	
 		.fix-container {
 				margin: 0 auto;
 				max-width: 1190px;
@@ -130,8 +128,15 @@ if($hex!=''){
 				background: <?php echo $data['background_color'];?>;
 					   }  
 		  .contentBox .navBox li a:hover { background: <?php echo $background_color;?>;}
-		  .contentBox .navBox { background: <?php echo $background_color;?>;}
-		 
+		<?php
+if($rgb_Color!=''){
+	?>
+ .contentBox .navBox:before{content:""; position:absolute;left:0px;top:0px;width:100%;  height:100%;
+	 background:<?php echo $rgb_Color;?> !important;z-index:-1;}
+	<?php
+}
+	
+	?> 
 	.footer .change-lang .dropdown .submenu li a:hover{color: #fff;  background:<?php echo $background_color;?> ;}
 	.footer .change-lang .dropdown .submenu li a {color: <?php echo $data['text_color'];?>;}  
   </style>
@@ -211,7 +216,7 @@ if(!empty($data)){
 								 ?>							 
 							    <script>
 									$(window).resize(function(){										
-										location.reload();
+										//location.reload();
 										});
 									 var select_width=get_width(<?php echo $count*$width;?>);	
 										var total_width=screen.width;	
