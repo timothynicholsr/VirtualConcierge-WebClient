@@ -128,15 +128,13 @@ if(!empty($page->languages))
 				background: <?php echo $data['background_color'];?>;
 					   }  
 		  .contentBox .navBox li a:hover { background: <?php echo $background_color;?>;}
-		<?php
-if($rgb_Color!=''){
-	?>
- .contentBox .navBox:before{content:""; position:absolute;left:0px;top:0px;width:100%;  height:100%;
-	 background:<?php echo $rgb_Color;?> !important;z-index:-1;}
-	<?php
-}
+
+
+    .contentBox .navBox:before{content:""; position:absolute;left:0px;top:0px;width:100%;  height:100%;<?php echo ($rgb_Color !='' ?  "background:$rgb_Color;": '');?> 
+	!important;z-index:-1;
+	 }
 	
-	?> 
+	
 	.footer .change-lang .dropdown .submenu li a:hover{color: #fff;  background:<?php echo $background_color;?> ;}
 	.footer .change-lang .dropdown .submenu li a {color: <?php echo $data['text_color'];?>;}  
   </style>
