@@ -96,7 +96,39 @@ body {-webkit-font-smoothing: antialiased;font-size:14px;  font-family: Helvetic
 .contentBox .navBox li a .washing{background:url(../images/button_icons/washing@2x.png) no-repeat center center;}
 .contentBox .navBox li a .transportation{background:url(../images/button_icons/transportation.png) no-repeat center center;}
 
-
+.alarm{background:url(../images/button_icons/alarm@2x.png) no-repeat center center;}
+.call{background:url(../images/button_icons/call@2x.png) no-repeat center center;}
+.car{background:url(../images/button_icons/car@2x.png) no-repeat center center;}
+.checkin{background:url(../images/button_icons/checkin@2x.png) no-repeat center center;}
+.coffee{background:url(../images/button_icons/coffee@2x.png) no-repeat center center;}
+.conditioner{background:url(../images/button_icons/conditioner@2x.png) no-repeat center center;}
+.drugstore{background:url(../images/button_icons/drugstore@2x.png) no-repeat center center;}
+.emergency{background:url(../images/button_icons/emergency@2x.png) no-repeat center center;}
+.Fish{background:url(../images/button_icons/fish@2x.png) no-repeat center center;}
+.generic{background:url(../images/button_icons/generic@2x.png) no-repeat center center;}
+.guide{background:url(../images/button_icons/guide@2x.png) no-repeat center center;}
+.home{background:url(../images/button_icons/home@2x.png) no-repeat center center;}
+.instructions{background:url(../images/button_icons/instructions@2x.png) no-repeat center center;}
+.internet{background:url(../images/button_icons/internet@2x.png) no-repeat center center;}
+.lock{background:url(../images/button_icons/lock@2x.png) no-repeat center center;}
+.miscellaneous{background:url(../images/button_icons/miscellaneous@2x.png) no-repeat center center;}
+.oven{background:url(../images/button_icons/oven@2x.png) no-repeat center center;}
+.pen{background:url(../images/button_icons/pen.png) no-repeat center center;}
+.restaurant{background:url(../images/button_icons/restaurant.png) no-repeat center center;}
+.salon{background:url(../images/button_icons/salon.png) no-repeat center center;}
+.shopping{background:url(../images/button_icons/shopping@2x.png) no-repeat center center;}
+.taxi{background:url(../images/button_icons/taxi@2x.png) no-repeat center center;}
+.wifi{background:url(../images/button_icons/wifi@2x.png) no-repeat center center;}
+.washing{background:url(../images/button_icons/washing@2x.png) no-repeat center center;}
+.transportation{background:url(../images/button_icons/transportation.png) no-repeat center center;}
+.section-text-on-top li:before {
+ content: "";
+    float: left;
+    height: 15px;
+    margin: 0 10px 0 0;
+    width: 15px;
+      background:url(../images/play-button.png) no-repeat center center;background-size:100% auto;}
+      
 
 
 .contentBox .navBox li a .drug{background:url(../images/button_icons/drug-stroe.png) no-repeat center center;}

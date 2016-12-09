@@ -1,5 +1,4 @@
 <?php
-session_start();
 /* Convert hexa code to rgb */
 
 function hex2rgb($hex) {

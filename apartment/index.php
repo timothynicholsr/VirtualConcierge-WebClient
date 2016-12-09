@@ -1,3 +1,7 @@
+<?php 
+session_start();
+$_SESSION['page_name']='';
+?>
 <!doctype html> 
 <html lang="en">	
     <head>
@@ -28,15 +32,8 @@ curl_setopt($ch, CURLOPT_URL, $url);
 $result = curl_exec($ch);
 curl_close($ch);
 $page_content = json_decode($result);
-
-
 foreach($page_content as $page){
-
-
-
 	if($page->room_id==$listing_id){	
-		
-//	echo "<pre>";print_r($page);echo"</pre>";	
 if(!empty($page->languages))
 	{
 		
@@ -61,7 +58,10 @@ if(!empty($page->languages))
 				$data['background_color_two']=$background_color_two;
 				$data['button_background_color']=$button_background_color;
 				$data['text_color']=$text_color;
-					$lang[]=$language->language;
+				$lan['id']=$language->id;
+				$lan['language']=$language->language;
+			   // $lang[]=$language->language;
+			    $lang[]=$lan;
 		if($language->language==$default_language)
 			{ 	
 				 $page_language=($language->language != '' && isset($language->language) ? $language->language : '');
@@ -76,7 +76,7 @@ if(!empty($page->languages))
 										 $button['name']=($buttons->name != '' && isset($buttons->name) ? $buttons->name : '');
 										 $button['icon']=($buttons->icon != '' && isset($buttons->icon) ? $buttons->icon : '');
 										 $button['text']=($buttons->text != '' && isset($buttons->text) ? $buttons->text : '');
-										 $button['type']=($buttons->type != '' && isset($buttons->text) ? $buttons->type : '');
+										 $button['type']=($buttons->type != '' && isset($buttons->page_type) ? $buttons->page_type : '');
 										 $button['language']=($buttons->language != '' && isset($buttons->language) ? $buttons->language : '');
 										 $button['page_id']=($buttons->page_id != '' && isset($buttons->page_id) ? $buttons->page_id : '');
 										 $data_button[]=$button;
@@ -89,11 +89,14 @@ if(!empty($page->languages))
 			}
 			if(!empty($lang)){
 				$data['lang']=$lang;
-			}	 
+			}	
+			
 	}
 }
 }
-}?>			 
+}
+
+?>			 
 			 
   <style>
 	  .header .topBar {
@@ -101,8 +104,6 @@ if(!empty($page->languages))
 		  }
 		 .contentBox{background:url(<?php echo $data['background_image_two']?>) no-repeat top center;} 
 	<?php 
-	//echo strlen($data['button_background_color']);
-	//echo $data['button_background_color'] ;
 	  if(strlen($data['button_background_color']) >= 7) {
 		//  echo $data['button_background_color'];
      $background_color = substr($data['button_background_color'],0,7);
@@ -165,12 +166,19 @@ if(!empty($data)){
 					  ?>
 					   <ul class="navBox">
 					  <?php
-					   
+					   if(isset($_GET['lang'])){
+								$link_page='?id='.$_GET['id'].'&lang='.$_GET['lang'].'&page_id=';
+							}
+							else {
+								$link_page='?id='.$_GET['id'].'&page_id=';
+							}
 				 foreach($data['btn'] as $button_link){
 
 					 ?>
 						 <li>
-                            <a href="#">
+                            <a href="page.php<?php 
+                            $_SESSION['page'.$button_link['page_id']] = $button_link['icon'];
+                            echo $link_page.$button_link['page_id'];?>">
                                 <i class="<?php echo $button_link['icon']?>"></i><span><?php echo $button_link['text']?></span>
                             </a>
                         </li>
@@ -189,13 +197,13 @@ if(!empty($data)){
 												}
 								 </script>
 							 <?php 
-							 if(isset($_GET['id'])){
-							
-							$link='?id='.$_GET['id'].'&lang=';
-						}
-						else {
-							$link='?lang=';
-						}
+								 if(isset($_GET['id'])){
+								
+								$link='?id='.$_GET['id'].'&lang=';
+							}
+							else {
+								$link='?lang=';
+							}
 							 $html='';
 							 $count=1;
 							 $flag=array('de','tr','ru');
@@ -206,11 +214,13 @@ if(!empty($data)){
 									    var ht11="";
 							 	 </script>
 							 	 <?php
+							 	
 							  if(!empty($data['lang']))
 							  {
 								  $count=1;
 								  
-							 foreach($data['lang'] as $lang_link){								 
+							 foreach($data['lang'] as $lang_link){	
+								// print_r($lang_link);							 
 								 ?>							 
 							    <script>
 									$(window).resize(function(){										
@@ -228,16 +238,16 @@ if(!empty($data)){
 											}
 									
 										if(select_width >= 50){
-											console.log(1);
-											ht+="<li ><a href='<?php echo $link.$lang_link;?>'><img src='images/<?php echo $lang_link;?>.png'/></a></li>";
+											
+											ht+="<li ><a href='<?php echo $link.$lang_link['language'].'&lang_id='.$lang_link['id'].'';?>'><img src='images/<?php echo $lang_link['language'];?>.png'/></a></li>";
 										}
 										else {
 											console.log(2);
-											ht11+="<li><a href='<?php echo $link.$lang_link;?>'><?php echo $lang_link;?></a></li>";
+											ht11+="<li><a href='<?php echo $link.$lang_link['language'].'&lang_id='.$lang_link['id'].'';?>'><?php echo $lang_link['language'];?></a></li>";
 										}	
 										
 								 </script>
-								<li class='list_weight'><a href="<?php echo $link.$lang_link;?>"><img src="images/<?php echo $lang_link;?>.png"/></a></li>
+								<li class='list_weight'><a href="<?php echo $link.$lang_link['language'].'&lang_id='.$lang_link['id'].'';?>"><img src="images/<?php echo $lang_link['language'];?>.png"/></a></li>
 								 <?php
 								 /*
 						 if(in_array ($lang_link, $flag)){
