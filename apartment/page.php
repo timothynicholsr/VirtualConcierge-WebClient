@@ -191,7 +191,7 @@ if(!empty($page->languages))
 	  	<?php 
 	  if(strlen($data['button_background_color']) >= 7) {
 		//  echo $data['button_background_color'];
-     $background_color = substr($data['button_background_color'],0,7);
+      $background_color = substr($data['button_background_color'],0,7);
       $background_color1 = substr($data['button_background_color'],1,6);
 	  $hex= hex2rgb($background_color);
       //$code = substr($data['button_background_color'],-1);
@@ -201,6 +201,8 @@ if(!empty($page->languages))
       
    } else {
     $rgb_Color=$data['button_background_color'];
+    $background_color = $data['button_background_color'];
+    
     $code='';
      $hex='';
    }
@@ -216,7 +218,7 @@ if(!empty($page->languages))
 	 .section-1 {
 		  background:url(<?php echo $data['background_one_image']?>) no-repeat top center; 
 		  }
-		 .section-3{background:url(<?php echo $data['background_two_image']?>) no-repeat top center;} 
+		 .section-3{background:url(<?php echo $data['background_two_image']?>) no-repeat top center;   align-items: center; display:flex;} 
 		 .contentBox {
   min-height: 475px;
   position: relative;
@@ -244,7 +246,7 @@ if(!empty($page->languages))
   -ms-box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
   -webkit-box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
 }
-.section-text h3, .section-text-on-top h1 {font-size: 30px;}
+.section-text h3, .section-text-on-top h1 {font-size: 40px;}
 .section-text-on-top {
   color: #fff;
   position: relative;
@@ -266,7 +268,7 @@ if(!empty($page->languages))
   z-index: 2;
 }
 .section-text-on-top ul {margin: 30px 0 0;}
-.section-text-on-top li {padding: 5px 0;}
+.section-text-on-top li {padding: 10px 0;}
 .icon_image {
     width: 70px;
     height: 75px;
@@ -278,25 +280,44 @@ if(!empty($page->languages))
 }
 .header h1 {
   color: <?php echo $data['text_color'];?>;
-  font-size: 20px;
+  font-size: 40px;
   margin: 10px 0 0;
 }
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
-@media (max-width:767px){
-		.contentBox {min-height: 275px;}
-		.section-text h3, .section-text-on-top h1 {font-size: 20px;}
-		.icon_image{height: 55px;width: 50px;}
+
+.img-text{
+    float: left;
+    padding: 17px;
+    width:65%;
 }
+.img-bord{background:<?php echo $background_color;?>; padding:15px; box-shadow:3px 3px 3px <?php echo ($rgb_Color !='' ?  "$rgb_Color;": '');?> ; float:right;width:33%;}
+.img-bord img{max-width:100%; height:auto;vertical-align:top}
+
+@media (max-width:767px){
+	.contentBox {min-height: 275px;}
+	.section-text h3, .section-text-on-top h1 {font-size: 20px;}
+	.icon_image{height: 55px;width: 50px;}
+	.img-text{padding:0px;}
+	.section-text-on-top ul{margin:0px;}
+	.section-text-on-top li{padding:10px 0 0 0;}
+	.img-bord{padding:7px;}
+	.section-text-on-top li::before{width:10px; margin-right:5px; background-position:0 4px;}
+	.header h1{font-size:20px;}
+
+}
+@media (max-width:479px){
+	.contentBox {display:block;}
+	.section-text-on-top li{font-size:13px;}
+	.img-bord{padding:5px;}
+	.header h1{font-size:20px;}
+}
+
 .pad{
 padding:20px;	
 }
-.img-text{
-	display: inline;
-    float: left;
-    padding: 17px;
-}
+
   </style>
     </head>
     <?php
@@ -353,12 +374,13 @@ if(!empty($data)  && isset($data['page'])){
 							<div class='img-text'>
 					      <h1><?php echo (isset($data['section5']) ? strtoupper($data['section5']['text']) : '');?></h1>
 					  		<ul>
-								 <li><?php echo (isset($data['section6']) ? $data['section6']['text'] : '');?></li>
-								 <li><?php echo (isset($data['section7']) ? $data['section7']['text'] : '');?></li>
+								
+								 <?php echo (isset($data['section6']) ? '<li>'.$data['section6']['text'].'</li>' : '');?>
+								 <?php echo (isset($data['section7']) ? '<li>'.$data['section7']['text'].'</li>' : '');?>
 							</ul>
 							</div>
-							<div class='img-borderss'>
-							<!--<img src='images/cable-img.jpg'> -->
+							<div class='img-bord'>
+							<img src='images/cable-img.jpg'>
 							</div>
 						 </div>
 					 </div>
