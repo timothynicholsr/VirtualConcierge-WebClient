@@ -216,9 +216,9 @@ if(!empty($page->languages))
 					   }  
 	  .header{background:#000;text-align: center;}
 	 .section-1 {
-		  background:url(<?php echo $data['background_one_image']?>) no-repeat top center; 
+		  background:url(<?php echo $data['background_image']?>) no-repeat top center; 
 		  }
-		 .section-3{background:url(<?php echo $data['background_two_image']?>) no-repeat top center;   align-items: center; display:flex;} 
+		 .section-3{background:url(<?php echo $data['background_image_two']?>) no-repeat top center;   align-items: center; display:flex;} 
 		 .contentBox {
   min-height: 475px;
   position: relative;
@@ -292,7 +292,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 17px;
     width:65%;
 }
-.img-bord{background:<?php echo $background_color;?>; padding:15px; box-shadow:3px 3px 3px <?php echo ($rgb_Color !='' ?  "$rgb_Color;": '');?> ; float:right;width:33%;}
+.img-bord{background:#3F264E; padding:15px; box-shadow:3px 3px 3px <?php echo ($rgb_Color !='' ?  "$rgb_Color;": '');?> ; float:right;width:33%;}
 .img-bord img{max-width:100%; height:auto;vertical-align:top}
 
 @media (max-width:767px){
