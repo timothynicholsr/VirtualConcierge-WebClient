@@ -239,7 +239,7 @@ if(!empty($page->languages))
 }
 .contentBox.section-2 {
   background: #1a1a1a none repeat scroll 0 0;
-  border: 15px solid #fff;
+   <!-- border: 15px solid #fff; -->
   box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
   -o-box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
   -moz-box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
