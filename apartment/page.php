@@ -338,7 +338,7 @@ if(!empty($data)  && isset($data['page'])){
               <div class="fix-container">
                 <header class="header">
 					
-					<a href="index.php?id=<?php echo $listing_id; ?>"><img src="images/left-arrow.png" style="float: left;"></a>
+					<a href="index.php?id=<?php echo $listing_id; ?>"><img src="images/left-arrow.png" style="float: left;" class="icon_image"></a>
 					<i class="<?php echo (isset($_SESSION['page'.$page_id]) ? $_SESSION['page'.$page_id] : '');?> icon_image"></i>
 					<h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['text']) : '');?></h1>
                     
