@@ -239,7 +239,7 @@ if(!empty($page->languages))
 }
 .contentBox.section-2 {
   background: #1a1a1a none repeat scroll 0 0;
-   <!-- border: 15px solid #fff; -->
+  <!-- border: 15px solid #fff; -->
   box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
   -o-box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
   -moz-box-shadow: 15px 15px 0 #000 inset, -15px -15px 0 0 #000 inset;
@@ -337,6 +337,8 @@ if(!empty($data)  && isset($data['page'])){
                   ?> 
               <div class="fix-container">
                 <header class="header">
+					
+					<a href="index.php?id=<?php echo $listing_id; ?>"><img src="images/left-arrow.png" style="float: left;"></a>
 					<i class="<?php echo (isset($_SESSION['page'.$page_id]) ? $_SESSION['page'.$page_id] : '');?> icon_image"></i>
 					<h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['text']) : '');?></h1>
                     
