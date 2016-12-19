@@ -78,7 +78,7 @@ body {-webkit-font-smoothing: antialiased;font-size:14px;  font-family: Helvetic
 .contentBox .navBox li a .conditioner{background:url(../images/button_icons/conditioner@2x.png) no-repeat center center;}
 .contentBox .navBox li a .drugstore{background:url(../images/button_icons/drugstore@2x.png) no-repeat center center;}
 .contentBox .navBox li a .emergency{background:url(../images/button_icons/emergency@2x.png) no-repeat center center;}
-.contentBox .navBox li a .Fish{background:url(../images/button_icons/fish@2x.png) no-repeat center center;}
+.contentBox .navBox li a .fish{background:url(../images/button_icons/fish@2x.png) no-repeat center center;}
 .contentBox .navBox li a .generic{background:url(../images/button_icons/generic@2x.png) no-repeat center center;}
 .contentBox .navBox li a .guide{background:url(../images/button_icons/guide@2x.png) no-repeat center center;}
 .contentBox .navBox li a .home{background:url(../images/button_icons/home@2x.png) no-repeat center center;}
@@ -104,7 +104,7 @@ body {-webkit-font-smoothing: antialiased;font-size:14px;  font-family: Helvetic
 .conditioner{background:url(../images/button_icons/conditioner@2x.png) no-repeat center center;}
 .drugstore{background:url(../images/button_icons/drugstore@2x.png) no-repeat center center;}
 .emergency{background:url(../images/button_icons/emergency@2x.png) no-repeat center center;}
-.Fish{background:url(../images/button_icons/fish@2x.png) no-repeat center center;}
+.fish{background:url(../images/button_icons/fish@2x.png) no-repeat center center;}
 .generic{background:url(../images/button_icons/generic@2x.png) no-repeat center center;}
 .guide{background:url(../images/button_icons/guide@2x.png) no-repeat center center;}
 .home{background:url(../images/button_icons/home@2x.png) no-repeat center center;}

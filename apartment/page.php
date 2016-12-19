@@ -257,7 +257,6 @@ if(!empty($page->languages))
 	 }
 		 ?>  
 	
-	
 
 		 .section-3{background:url(<?php echo $data['background_image_two']?>) no-repeat top center;   align-items: center; display:flex;} 
 		 
@@ -375,7 +374,7 @@ if(!empty($data)  && isset($data['page'])){
 					  <?php
 		  if($_GET['page_type']=='jpg'){
 			?>
-			<h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['title']) : '');?></h1>         
+			<h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['text']) : '');?></h1>         
 		
 			<?php  
 		  }
