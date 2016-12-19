@@ -1,4 +1,5 @@
 <?php
+CONST URl='http://hoste.us:8000/api/listings/30?key=4daa6722ac1da9c6c425e618c9eb3f3f';
 /* Convert hexa code to rgb */
 
 function hex2rgb($hex) {

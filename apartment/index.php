@@ -24,7 +24,7 @@ $_SESSION['page_name']='';
 <?php 
 include('helper.php');
 $listing_id=(isset($_GET['id']) && $_GET['id'] != ''  ? $_GET['id'] : 1);
-$url='http://159.203.92.158:8181/api/listings/30?key=4daa6722ac1da9c6c425e618c9eb3f3f';
+$url=URl;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -32,6 +32,7 @@ curl_setopt($ch, CURLOPT_URL, $url);
 $result = curl_exec($ch);
 curl_close($ch);
 $page_content = json_decode($result);
+if(!empty($page_content)){
 foreach($page_content as $page){
 	if($page->room_id==$listing_id){	
 if(!empty($page->languages))
@@ -76,7 +77,8 @@ if(!empty($page->languages))
 										 $button['name']=($buttons->name != '' && isset($buttons->name) ? $buttons->name : '');
 										 $button['icon']=($buttons->icon != '' && isset($buttons->icon) ? $buttons->icon : '');
 										 $button['text']=($buttons->text != '' && isset($buttons->text) ? $buttons->text : '');
-										 $button['type']=($buttons->type != '' && isset($buttons->page_type) ? $buttons->page_type : '');
+										 $button['type']=($buttons->page_type != '' && isset($buttons->page_type) ? $buttons->page_type : '');
+										 $button['video_url']=($buttons->video_url != '' && isset($buttons->video_url) ? $buttons->video_url : '');
 										 $button['language']=($buttons->language != '' && isset($buttons->language) ? $buttons->language : '');
 										 $button['page_id']=($buttons->page_id != '' && isset($buttons->page_id) ? $buttons->page_id : '');
 										 $data_button[]=$button;
@@ -94,6 +96,8 @@ if(!empty($page->languages))
 	}
 }
 }
+}
+
 }
 
 ?>			 
@@ -120,24 +124,19 @@ if(!empty($page->languages))
      $hex='';
    }
    ?>
-   
-		.fix-container {
+.fix-container {
 				margin: 0 auto;
 				max-width: 1190px;
 				width: 100%;
 				padding: 0;
 				background: <?php echo $data['background_color'];?>;
-					   }  
-		  .contentBox .navBox li a:hover { background: <?php echo $background_color;?>;}
-
-
-    .contentBox .navBox:before{content:""; position:absolute;left:0px;top:0px;width:100%;  height:100%;<?php echo ($rgb_Color !='' ?  "background:$rgb_Color;": '');?> 
+}  
+.contentBox .navBox li a:hover { background: <?php echo $background_color;?>;}
+.contentBox .navBox:before{content:""; position:absolute;left:0px;top:0px;width:100%;  height:100%;<?php echo ($rgb_Color !='' ?  "background:$rgb_Color;": '');?> 
 	!important;z-index:-1;
 	 }
-	
-	
-	.footer .change-lang .dropdown .submenu li a:hover{color: #fff;  background:<?php echo $background_color;?> ;}
-	.footer .change-lang .dropdown .submenu li a {color: <?php echo $data['text_color'];?>;}  
+.footer .change-lang .dropdown .submenu li a:hover{color: #fff;  background:<?php echo $background_color;?> ;}
+.footer .change-lang .dropdown .submenu li a {color: <?php echo $data['text_color'];?>;}  
   </style>
     </head>
     <?php
@@ -158,9 +157,7 @@ if(!empty($data)){
                         </div>
                     </div>
                 </header><!-- header end -->
-                <div class="contentBox">
-                   
-						
+                <div class="contentBox">                 		
 				 <?php 
 				  if(!empty($data['btn'])){
 					  ?>
@@ -173,12 +170,18 @@ if(!empty($data)){
 								$link_page='?id='.$_GET['id'].'&page_id=';
 							}
 				 foreach($data['btn'] as $button_link){
-
+            	  //echo "<pre>";print_r($button_link);echo"</pre>";
 					 ?>
 						 <li>
-                            <a href="page.php<?php 
+                            <a href="page.php<?php echo $link_page.$button_link['page_id'].'&page_type='.$button_link['type'];
                             $_SESSION['page'.$button_link['page_id']] = $button_link['icon'];
-                            echo $link_page.$button_link['page_id'];?>">
+                            if($button_link['type']=='video'){
+                            ($button_link['video_url'] != '' ? $_SESSION['video_url'] = $button_link['video_url'] : '');
+                            $_SESSION['text'] = $button_link['text'];
+                            $_SESSION['name'] = $button_link['name'];
+                            $_SESSION['icon_pic'] = $button_link['icon'];
+						    }   
+                            ?>">
                                 <i class="<?php echo $button_link['icon']?>"></i><span><?php echo $button_link['text']?></span>
                             </a>
                         </li>
@@ -244,54 +247,19 @@ if(!empty($data)){
 										else {
 											console.log(2);
 											ht11+="<li><a href='<?php echo $link.$lang_link['language'].'&lang_id='.$lang_link['id'].'';?>'><?php echo $lang_link['language'];?></a></li>";
-										}	
-										
+										}		
 								 </script>
 								<li class='list_weight'><a href="<?php echo $link.$lang_link['language'].'&lang_id='.$lang_link['id'].'';?>"><img src="images/<?php echo $lang_link['language'];?>.png"/></a></li>
 								 <?php
-								 /*
-						 if(in_array ($lang_link, $flag)){
-						   $submenuhtml='<li class="dropdown"><a href="#">Other Languages</a><ul class="submenu">';
-							 $submenuhtml_end='</ul></li>';
-					 ?> 
-					<li>
-						<?php
-						
-						 ?>
-						<a href="<?php echo $link.$lang_link;?>"><img src="images/<?php echo $lang_link;?>.jpg"/></a></li>
-					 <?php
-					 }
-					 else
-					  {
-						 $submenuhtml='<li class="dropdown"><a href="#">Other Languages</a><ul class="submenu">';
-							 $submenuhtml_end='</ul></li>'; 
-						 $html.='<li><a href='.$link.$lang_link.'>'.$lang_link.'</a></li>';	 
-				     ?>      
-					<?php		 
-					 }
-					 
-					 					
-					 					*/
 					 					$count++;
-					 } 
-					 // echo $submenuhtml.$html.$submenuhtml_end; 
-					  
+					 }   
 				  }
 					 ?>	
-							
-                         <!--<li><a href="#"><img src="images/flag-img1.jpg"/></a></li>
-                            <li><a href="#"><img src="images/flag-img2.jpg"/></a></li>
-                            <li><a href="#"><img src="images/flag-img3.jpg"/></a></li> -->
-                           
-                        </ul>
-                        <!-- <ul class='test_page'>
-							 </ul> -->
+                        </ul>       
                     </div>
                 </footer>
-                
                 <script>
                $('.render_list').html(ht+ht1+ht11+ht1_end);
-            //   console.log(ht+ht1+ht11+ht1_end);
                 </script>
             </div><!-- container end here -->
         </main>

@@ -1,7 +1,5 @@
 <?php 
 session_start();
-//print_r($_SESSION['page'])
-
 ?>
 <!doctype html> 
 <html lang="en">	
@@ -26,7 +24,7 @@ session_start();
 include('helper.php');
 $listing_id=(isset($_GET['id']) && $_GET['id'] != ''  ? $_GET['id'] : 1);
 $page_id=(isset($_GET['page_id']) && $_GET['page_id'] != ''  ? $_GET['page_id'] : 1);
-$url='http://159.203.92.158:8181/api/listings/30?key=4daa6722ac1da9c6c425e618c9eb3f3f';
+$url=URl;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -84,13 +82,30 @@ if(!empty($page->languages))
 								//die();
 								foreach($language->pages as $page_data)
 									{
-									if($page_id =='0'){
+									if($page_id =='0')
+											{
 										Echo "There is no page";
 										die();
-									}
+											}
 									else { 
-										//echo $_SESSION['page_name'];
+										
+										
+
 							       if($_SESSION['page_name'] ==''){
+									  // echo "11";
+									   if($_GET['page_type']=='video'){
+										 if($_SESSION['video_url']!=''){
+											// print_r($_SESSION);
+											// die();
+											 $data_video['video']=$_SESSION['video_url'];
+											 $data_video['text']=$_SESSION['text'];
+											 $data_video['name']=$_SESSION['name'];
+											 $data_video['icon_pic']=$_SESSION['icon_pic'];
+											 //$data_video['video']=$_SESSION['video_url'];
+											 
+										 }
+									   }
+									   else {
 									  if($page_data->id == $page_id){
 									//echo $page_data->name;
 									$name=(isset($page_data->name) && $page_data->name != ''  ? $page_data->name : '');
@@ -102,6 +117,7 @@ if(!empty($page->languages))
 									$section_three_text=(isset($page_data->section_three_text) && $page_data->section_three_text != ''  ? $page_data->section_three_text : '');
 									$data['page_name']=$name;
 									$data['page']=1;
+									$data['page_type']=$_GET['page_type'];
 									$data['title_text']=$title_text;
 									$data['background_one_image']=$background_one_image;
 									$data['background_two_image']=$background_two_image;
@@ -125,6 +141,7 @@ if(!empty($page->languages))
 											
 										}	
 									} 
+								}
 								   }
 								   else {
 									   //echo $page_data->name;
@@ -140,6 +157,7 @@ if(!empty($page->languages))
 									$data['page_name']=$name;
 									$data['page']=1;
 									$data['title_text']=$title_text;
+									$data['page_type']=$_GET['page_type'];
 									$data['background_one_image']=$background_one_image;
 									$data['background_two_image']=$background_two_image;
 									$data['section_one_text']=$section_one_text;
@@ -155,7 +173,6 @@ if(!empty($page->languages))
 													 $section['url']=(isset($section_data->url) &&  $section_data->url != '' ? $section_data->url : '');
 													 $section['text']=($section_data->text != '' && isset($section_data->text) ? $section_data->text : '');
 												     //$section_array[]=$section;
-												     
 												      $data['section'.$section_count]=$section;
 												     $section_count++;
 												}
@@ -202,7 +219,6 @@ if(!empty($page->languages))
    } else {
     $rgb_Color=$data['button_background_color'];
     $background_color = $data['button_background_color'];
-    
     $code='';
      $hex='';
    }
@@ -215,14 +231,36 @@ if(!empty($page->languages))
 				background: <?php echo $data['background_color'];?>;
 					   }  
 	  .header{background:#000;text-align: center;}
-	 .section-1 {
+				
+					
+					  <?php
+	  if($_GET['page_type']=='jpg'){
+		?> 
+		.section-1 { background:url(<?php echo $data['section1'] ['url']?>) no-repeat top center; }  
+		.contentBox {
+			  min-height: 700px;
+			  position: relative;
+			}
+		<?php  
+	  }
+	  else {
+	  ?>
+	  
+	.section-1 {
 		  background:url(<?php echo $data['background_image']?>) no-repeat top center; 
 		  }
+		  .contentBox {
+			  min-height: 475px;
+			  position: relative;
+			}
+		 <?php
+	 }
+		 ?>  
+	
+	
+
 		 .section-3{background:url(<?php echo $data['background_image_two']?>) no-repeat top center;   align-items: center; display:flex;} 
-		 .contentBox {
-  min-height: 475px;
-  position: relative;
-}
+		 
 .section-text {
   padding: 20px;
   left: 0;
@@ -323,26 +361,33 @@ padding:20px;
     <?php
 if(!empty($data)  && isset($data['page'])){
 	$_SESSION['page_name']=$data['page_name'];
-	//echo"<pre>";
-	//print_r($data);
-	//echo"</pre>";
+   // print_r($data);
 	?>
 	<body>
         <main class="wrapper">
-            <!-- container start here -->
-            <?php 
+                  <?php 
                   if(isset($data['section2']) || isset($data['section1'])){
-					  
-				  
                   ?> 
               <div class="fix-container">
                 <header class="header">
-					
 					<a href="index.php?id=<?php echo $listing_id; ?>"><img src="images/left-arrow.png" style="float: left;" class="icon_image"></a>
 					<i class="<?php echo (isset($_SESSION['page'.$page_id]) ? $_SESSION['page'.$page_id] : '');?> icon_image"></i>
-					<h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['text']) : '');?></h1>
-                    
-                </header><!-- header end -->
+					  <?php
+		  if($_GET['page_type']=='jpg'){
+			?>
+			<h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['title']) : '');?></h1>         
+		
+			<?php  
+		  }
+		  else {
+		  ?>
+		  
+		 <h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['text']) : '');?></h1>         
+			 <?php
+		 }
+			 ?>           
+                </header>
+                <!-- header end -->
                 <div class="contentBox section-1">
 						<div class="section-text">
 								 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
@@ -352,9 +397,7 @@ if(!empty($data)  && isset($data['page'])){
 				}
                     ?>
                   <?php 
-                  if(isset($data['section3']) || isset($data['section4'])){
-					  
-				  
+                  if(isset($data['section3']) || isset($data['section4'])){				
                   ?>  
                 <div class="contentBox section-2">
 					<div class="section-text">
@@ -367,8 +410,7 @@ if(!empty($data)  && isset($data['page'])){
                 ?>
                  <?php 
                   if(isset($data['section5']) || isset($data['section6']) || isset($data['section7'])){
-					  
-				  
+					 
                   ?>  
                    <div class="contentBox section-3">
 					<div class="overlay-div">
@@ -404,7 +446,7 @@ if(!empty($data)  && isset($data['page'])){
 							 <?php 
 							 if(isset($_GET['id']))
 								{
-								$link='?id='.$_GET['id'].'&page_id='.$_GET['page_id'].'&lang=';
+								$link='?id='.$_GET['id'].'&page_type='.$_GET['page_type'].'&page_id='.$_GET['page_id'].'&lang=';
 								}
 								else 
 									{
@@ -467,6 +509,32 @@ if(!empty($data)  && isset($data['page'])){
         </main>
     </body>
 	<?php	
+}
+else if(!empty($data_video)){ 
+	//print_r($data_video);
+	?>
+	<body>
+	<main class="wrapper">
+		    <div class="fix-container">
+                <header class="header">
+					<a href="index.php?id=<?php echo $listing_id; ?>"><img src="images/left-arrow.png" style="float: left;" class="icon_image"></a>
+					<i class="<?php echo (isset($data_video['icon_pic']) ? $data_video['icon_pic'] : '');?> icon_image"></i>
+					<h1><?php echo (isset($data_video['name']) ? strtoupper($data_video['name']) : '');?></h1>
+                </header>
+                  <div  style="text-align: center;">
+					  <video width='60%' height='80%' autoplay>
+						<!--<source src="mov_bbb.mp4"> -->
+						<source src="<?php echo $data_video['video'];?>"> 
+						Your browser does not support HTML5 video.
+					  </video>
+					
+					</div>
+			</div>
+                
+	</main>
+	</body>
+	<?php
+//	print_r($data_video);
 }
 else {
 	echo "No page found";
