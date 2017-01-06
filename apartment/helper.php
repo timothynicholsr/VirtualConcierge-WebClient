@@ -1,5 +1,8 @@
 <?php
 CONST URl='http://hoste.us:8000/api/listings/30?key=4daa6722ac1da9c6c425e618c9eb3f3f';
+CONST MESSAGEURl='http://hoste.us:8181/api/messages/';
+CONST Key='?key=4daa6722ac1da9c6c425e618c9eb3f3f';
+
 /* Convert hexa code to rgb */
 
 function hex2rgb($hex) {
@@ -54,16 +57,19 @@ function argb2rgba($color)
         return $output;
     }
 
-
-//echo argb2rgba('#7FFFA543');
-/*
-$array=("100%"=>"FF%", 
-		"Ben"=>"FC", 
-		"Joe"=>"43",
-		
-		
-		);
-*/
+function SendMessage($message,$roomid){
+  $message_url=MESSAGEURl.$roomid.Key;
+	$post = [
+    'message' => 'Test Message'
+];
+$ch = curl_init(MESSAGEURl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+$response = curl_exec($ch);
+curl_close($ch);
+var_dump($response);
+	
+}
 
 
 
