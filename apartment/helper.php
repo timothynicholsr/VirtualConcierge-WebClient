@@ -57,11 +57,11 @@ function argb2rgba($color)
         return $output;
     }
 
-function SendMessage($date,$time,$roomid){
+function SendMessage($date,$time,$name,$roomid){
   $message_url=MESSAGEURl.$roomid;
 	$post = [
     'key' => '4daa6722ac1da9c6c425e618c9eb3f3f',
-    'message' => 'guest X has requested a later checkout'.$date.'',
+    'message' => 'guest '.$name.' has requested a later checkout '.$date.'',
     'subject' => 'Later Checkout Date Requested',
     'msg_type' => 1
     

@@ -56,6 +56,8 @@ foreach($page_content as $page)
 						$button_background_color=(isset($page->button_background_color) && $page->button_background_color != ''  ? $page->button_background_color : '');
 						$text_color=(isset($page->text_color_three) && $page->text_color_three != ''  ? $page->text_color_three : '');
 						$allow_request_later_date=(isset($page->allow_request_later_date) && $page->allow_request_later_date != ''  ? $page->allow_request_later_date : '');
+						$guest_first_name=(isset($page->guest_first_name) && $page->guest_first_name != ''  ? $page->guest_first_name : '');
+						$guest_last_name=(isset($page->guest_last_name) && $page->guest_last_name != ''  ? $page->guest_last_name : '');
 						$data['name']=$name;
 						$data['country']=$country;
 						$data['background_image']=$background_image;
@@ -65,6 +67,8 @@ foreach($page_content as $page)
 						$data['button_background_color']=$button_background_color;
 						$data['text_color']=$text_color;
 						$data['allow_request_later_date']=$allow_request_later_date;
+						$data['guest_first_name']=$guest_first_name;
+						$data['guest_last_name']=$guest_last_name;
 						$lan['id']=$language->id;
 						$lan['language']=$language->language;
 						$lang[]=$lan;
@@ -661,6 +665,7 @@ else {
     $(".message_admin").submit(function(event) {
         event.preventDefault();
         var room_id='<?php echo $listing_id;?>';
+        var name='<?php echo $data['guest_first_name'].' '.$data['guest_last_name'] ;?>';
         var date = $('#datepicker').datepicker({ dateFormat: 'dd-MM-yy' }).val();
         var time = $('.timepicker').val();
         
@@ -672,7 +677,7 @@ else {
         $.ajax({
             type: "POST",
             url: "message.php",
-            data: "room_id=" + room_id + "&date=" + date + "&time=" + time,
+            data: "room_id=" + room_id + "&date=" + date + "&time=" + time + "&name=" + name,  
             success: function(res){
 				var obj = jQuery.parseJSON( res );
 				if(obj.error_code=='success'){
