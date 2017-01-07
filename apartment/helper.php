@@ -57,17 +57,23 @@ function argb2rgba($color)
         return $output;
     }
 
-function SendMessage($message,$roomid){
-  $message_url=MESSAGEURl.$roomid.Key;
+function SendMessage($date,$time,$roomid){
+  $message_url=MESSAGEURl.$roomid;
 	$post = [
-    'message' => 'Test Message'
+    'key' => '4daa6722ac1da9c6c425e618c9eb3f3f',
+    'message' => 'guest X has requested a later checkout'.$date.'',
+    'subject' => 'Later Checkout Date Requested',
+    'msg_type' => 1
+    
 ];
-$ch = curl_init(MESSAGEURl);
+$ch = curl_init($message_url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 $response = curl_exec($ch);
+
 curl_close($ch);
-var_dump($response);
+return $response;
+
 	
 }
 

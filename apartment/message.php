@@ -1,10 +1,9 @@
 <?php
 include('helper.php');
 
-print_r($_POST);
-die();
-$message=$_POST['message'];
+$date=$_POST['date'];
+$time=$_POST['time'];
 $room_id=$_POST['room_id'];
-SendMessage($message,$room_id);
-
+$res=SendMessage($date,$time,$room_id);
+print_r($res);
 ?>

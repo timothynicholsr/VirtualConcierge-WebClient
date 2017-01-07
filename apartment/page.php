@@ -508,7 +508,7 @@ if(!empty($data)  && isset($data['page'])){
 						  <h4 class="modal-title">Message</h4>
 						</div>
 						<div class="modal-body">
-						  <p>Later date requested.</p>
+						  <p class='res_message'>Later date requested.</p>
 						</div>
 						<div class="modal-footer">
 						  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -661,20 +661,33 @@ else {
     $(".message_admin").submit(function(event) {
         event.preventDefault();
         var room_id='<?php echo $listing_id;?>';
-        var date = $('#datepicker').datepicker({ dateFormat: 'dd-MM' }).val();
+        var date = $('#datepicker').datepicker({ dateFormat: 'dd-MM-yy' }).val();
         var time = $('.timepicker').val();
-        console.log(date);
-        console.log(time); 
+        
+        if(date =='Select Date' && time=='Select Time'){
+			  $('.res_message').text('Please Select date and time'); 
+					  $('#myModal').modal('show');
+			return false;
+		}
         $.ajax({
             type: "POST",
             url: "message.php",
-            data: "room_id=" + room_id + "&message=" + room_id,
+            data: "room_id=" + room_id + "&date=" + date + "&time=" + time,
             success: function(res){
-				console.log(res);
-				        $('#myModal').modal('show');
+				var obj = jQuery.parseJSON( res );
+				if(obj.error_code=='success'){
+					    $('.res_message').text('new date has been requested - your host will be back with you soon'); 
+					  $('#myModal').modal('show');
+				}
+				else {
+					$('.res_message').text('There some issue, Please contact admin'); 
+					  $('#myModal').modal('show');
+				}
+				     
 				},
 				error: function(jq,status,message) {
-					alert('Server eror. Status: ' + status + ' - Message: ' + message);
+					$('.res_message').text('There some issue, Please contact admin'); 
+					  $('#myModal').modal('show');
 			}
           });
      });
