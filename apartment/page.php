@@ -361,7 +361,9 @@ h1, h2, h3, h4, h5, h6 {
 padding:20px;	
 }
 
-
+.first_heading{
+  background:rgba(255, 165, 67, 0.5) none repeat scroll 0 0;
+}
   </style>
     <link rel="stylesheet" href="css/calender/jquery-ui.css">
     <link rel="stylesheet" href="css/calender/jquery.timepicker.css">
@@ -399,9 +401,19 @@ if(!empty($data)  && isset($data['page'])){
                 </header>
                 <!-- header end -->
                 <div class="contentBox section-1">
+					<?php if(isset($_GET['page_type']) && $_GET['page_type'] == 'jpg'){?>
+						
 						<div class="section-text">
 								 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
 						 </div>
+						
+						<?php }else{?>
+							<div class="section-text first_heading">
+								 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
+						 </div>
+						
+						<?php }?>
+						
                     </div>
                     <?php
 				}
@@ -524,7 +536,29 @@ if(!empty($data)  && isset($data['page'])){
                 <?php
 			   } 
 			   
-		   }
+		   }else if ($_GET['page_type'] =='checkin' && $data['allow_request_later_date'] !==1){?>
+			   
+			   <div class="contentBox section-2 test check_in_area">
+					<div class="row">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><i class="checkin-new"></i></div>
+						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+							<h3 class='pad'><?php echo (isset($data['section3']) ? strtoupper($data['section3']['text']) : '');?></h3>
+							 <p><?php echo date('l, F Y'); ?></p>
+							<p><?php echo date('h:i A'); ?></p>
+						 </div>
+					</div>
+					<div class="row">
+						 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><i class="checkout-new"></i></div>
+						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+						    <h3 class='pad'><?php echo (isset($data['section4']) ? strtoupper($data['section4']['text']) : '');?></h3>
+						    <p><?php echo date('l, F Y'); ?></p>
+							<p><?php echo date('h:i A'); ?></p>
+						</div>
+				    </div>
+                </div>
+			   
+			   
+			   <?php }
                 ?>
                 <!-- contentBox end -->
                 <footer class="footer ">
