@@ -4,7 +4,7 @@ session_start();
 ?>
 <!doctype html> 
 <html lang="en">	
-    <head>
+   <head>
         <!-- Basic Page Needs ======================== -->
         <meta charset="utf-8">
         <title></title>
