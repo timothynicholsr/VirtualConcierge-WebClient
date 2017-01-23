@@ -1,6 +1,5 @@
 <?php 
 date_default_timezone_set('UTC');
-
 session_start();
 ?>
 <!doctype html> 
@@ -220,8 +219,7 @@ else
 if($_GET['page_type']=='jpg')
 	{
 ?> 
-.section-1 { background:url(<?php echo $data['section1'] ['url']?>) no-repeat top center; }  
-.contentBox {min-height: 700px;position: relative;}
+.contentBox {min-width: 1000;position: relative;}
 <?php  
 }
 else {
@@ -361,8 +359,26 @@ h1, h2, h3, h4, h5, h6 {
 padding:20px;	
 }
 
+
 .first_heading{
-  background:rgba(255, 165, 67, 0.5) none repeat scroll 0 0;
+ <?php echo ($rgb_Color !='' ?  "background:$rgb_Color;": '');?> none repeat scroll 0 0;
+}
+
+
+.section-image {
+    padding-bottom: 100%;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+.section-image img.img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
 }
   </style>
     <link rel="stylesheet" href="css/calender/jquery-ui.css">
@@ -388,7 +404,7 @@ if(!empty($data)  && isset($data['page'])){
 		  if($_GET['page_type']=='jpg'){
 			?>
 			<h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['text']) : '');?></h1>         
-		
+		   
 			<?php  
 		  }
 		  else {
@@ -406,7 +422,20 @@ if(!empty($data)  && isset($data['page'])){
 						<div class="section-text">
 								 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
 						 </div>
-						
+						 <div class="section-image">
+						  <?php
+						if($_GET['page_type']=='jpg')
+							{
+								?> 
+						<img src="<?php echo $data['section1'] ['url']?>" class='img'>
+							<?php  
+							}
+						else 
+							{
+
+							}
+						?>
+						 </div>
 						<?php }else{?>
 							<div class="section-text first_heading">
 								 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
