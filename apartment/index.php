@@ -81,6 +81,7 @@ if(!empty($page->languages))
 										 $button['video_url']=($buttons->video_url != '' && isset($buttons->video_url) ? $buttons->video_url : '');
 										 $button['language']=($buttons->language != '' && isset($buttons->language) ? $buttons->language : '');
 										 $button['page_id']=($buttons->page_id != '' && isset($buttons->page_id) ? $buttons->page_id : '');
+										// $button['html']=($buttons->html != '' && isset($buttons->html) ? $buttons->html : '');
 										 $data_button[]=$button;
 									}
 							} 
@@ -110,9 +111,9 @@ if(!empty($page->languages))
 	<?php 
 	  if(strlen($data['button_background_color']) >= 7) {
 		//  echo $data['button_background_color'];
-     $background_color = substr($data['button_background_color'],0,7);
+     $background_color_b = substr($data['button_background_color'],0,7);
       $background_color1 = substr($data['button_background_color'],1,6);
-	  $hex= hex2rgb($background_color);
+	  $hex= hex2rgb($background_color_b);
       //$code = substr($data['button_background_color'],-1);
       $code=substr($data['button_background_color'],-2, 2);
       $code_c='#'.$code.$background_color1;
@@ -131,16 +132,18 @@ if(!empty($page->languages))
 				padding: 0;
 				background: <?php echo $data['background_color'];?>;
 }  
-.contentBox .navBox li a:hover { background: <?php echo $background_color;?>;}
+.contentBox .navBox li a:hover { background: <?php echo $background_color_b;?>;}
 .contentBox .navBox:before{content:""; position:absolute;left:0px;top:0px;width:100%;  height:100%;<?php echo ($rgb_Color !='' ?  "background:$rgb_Color;": '');?> 
 	!important;z-index:-1;
 	 }
-.footer .change-lang .dropdown .submenu li a:hover{color: #fff;  background:<?php echo $background_color;?> ;}
+.footer .change-lang .dropdown .submenu li a:hover{color: #fff;  background:<?php echo $background_color_b;?> ;}
 .footer .change-lang .dropdown .submenu li a {color: <?php echo $data['text_color'];?>;}  
   </style>
     </head>
     <?php
 if(!empty($data)){
+	//print_r($data);
+	
 	?>
 	<body>
         <main class="wrapper">
@@ -180,7 +183,11 @@ if(!empty($data)){
                             $_SESSION['text'] = $button_link['text'];
                             $_SESSION['name'] = $button_link['name'];
                             $_SESSION['icon_pic'] = $button_link['icon'];
-						    }   
+						    } 
+						 /*   if($button_link['html']!=''){   
+                             $_SESSION['html'.$button_link['page_id']] = $button_link['html'];
+						    } 
+						    */  
                             ?>">
                                 <i class="<?php echo $button_link['icon']?>"></i><span><?php echo $button_link['text']?></span>
                             </a>

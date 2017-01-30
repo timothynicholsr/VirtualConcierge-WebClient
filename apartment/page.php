@@ -4,7 +4,7 @@ session_start();
 ?>
 <!doctype html> 
 <html lang="en">	
-   <head>
+    <head>
         <!-- Basic Page Needs ======================== -->
         <meta charset="utf-8">
         <title></title>
@@ -88,8 +88,12 @@ foreach($page_content as $page)
 											 }
 										else { 
 											
-											if($_SESSION['page_name'] =='')
+											
+											
+											if(isset($_SESSION['page_name']) && $_SESSION['page_name'] =='')
 												{
+													
+													
 												   if($_GET['page_type']=='video')
 													{
 													 if($_SESSION['video_url']!='')
@@ -100,10 +104,11 @@ foreach($page_content as $page)
 															 $data_video['icon_pic']=$_SESSION['icon_pic'];
 														}
 													}
+													
 										   else
 												{
 													  if($page_data->id == $page_id)
-														{
+														{  
 															$name=(isset($page_data->name) && $page_data->name != ''  ? $page_data->name : '');
 															$title_text=(isset($page_data->title_text) && $page_data->title_text != ''  ? $page_data->title_text : '');
 															$background_one_image=(isset($page_data->background_one_image) && $page_data->background_one_image != ''  ? $page_data->background_one_image : '');
@@ -135,7 +140,11 @@ foreach($page_content as $page)
 																		 $section_count++;
 																	}
 																
-															}	
+															}
+																
+													}
+													if($_GET['page_type']=='html'){
+													 $data_html=1;
 													} 
 												}
 											}
@@ -173,6 +182,10 @@ foreach($page_content as $page)
 																	}
 																
 															}	
+															 if($_GET['page_type']=='html')
+																{
+																 $data_html=1;
+																}
 												}   
 											}
 										  }	
@@ -219,7 +232,6 @@ else
 if($_GET['page_type']=='jpg')
 	{
 ?> 
-.contentBox {min-width: 1000;position: relative;}
 <?php  
 }
 else {
@@ -253,7 +265,7 @@ else {
   -o-box-shadow: 15px 15px 0 <?php echo $data['background_color']?> inset, -15px -15px 0 0 <?php echo $data['background_color']?> inset;
   -moz-box-shadow: 15px 15px 0 <?php echo $data['background_color']?> inset, -15px -15px 0 0 <?php echo $data['background_color']?> inset;
   -ms-box-shadow: 15px 15px 0 <?php echo $data['background_color']?> inset, -15px -15px 0 0 <?php echo $data['background_color']?> inset;
-  -webkit-box-shadow: 15px 15px 0 <?php echo $data['background_color']?> inset, -15px -15px 0 0 <?php echo $data['background_color']?> inset;
+  -webkit-box-shadow: 15px 15px 0 <?php echo $data['background_colourlr']?> inset, -15px -15px 0 0 <?php echo $data['background_color']?> inset;
 }
 .contentBox.section-2.request_checkout {
  background: <?php echo $data['background_color_two']?> none repeat scroll 0 0;
@@ -310,14 +322,7 @@ background: <?php echo $data['background_color']?> none repeat scroll 0 0;
 }
 .section-text-on-top ul {margin: 30px 0 0;}
 .section-text-on-top li {padding: 10px 0;}
-.icon_image {
-    width: 70px;
-    height: 75px;
-    vertical-align: middle;
-    display: table;
-    vertical-align: middle;
-    background-size: 100% auto !important;
-    margin: 0 auto;
+.icon_image {width: 70px;height: 75px;vertical-align: middle;display: table;vertical-align: middle;background-size: 100% auto !important;margin: 0 auto;
 }
 .header h1 {
   color: <?php echo $data['text_color'];?>;
@@ -327,12 +332,7 @@ background: <?php echo $data['background_color']?> none repeat scroll 0 0;
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
-
-.img-text{
-    float: left;
-    padding: 17px;
-    width:65%;
-}
+.img-text{float: left;padding: 17px;width:65%;}
 .img-bord{background:#3F264E; padding:15px; box-shadow:3px 3px 3px <?php echo ($rgb_Color !='' ?  "$rgb_Color;": '');?> ; float:right;width:33%;}
 .img-bord img{max-width:100%; height:auto;vertical-align:top}
 
@@ -354,31 +354,14 @@ h1, h2, h3, h4, h5, h6 {
 	.img-bord{padding:5px;}
 	.header h1{font-size:20px;}
 }
-
 .pad{
 padding:20px;	
 }
-
-
 .first_heading{
  <?php echo ($rgb_Color !='' ?  "background:$rgb_Color;": '');?> none repeat scroll 0 0;
 }
-
-
-.section-image {
-    padding-bottom: 100%;
-    position: relative;
-    float: left;
-    width: 100%;
-}
-.section-image img.img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
+.section-image {padding-bottom: 100%;position: relative;float: left;width: 100%;}
+.section-image img.img { position: absolute;top: 0;left: 0; max-width: 100%;max-height: 100%;width: 100%;height: 100%;
 }
   </style>
     <link rel="stylesheet" href="css/calender/jquery-ui.css">
@@ -388,7 +371,10 @@ padding:20px;
    <script src="js/language/datepicker-<?php echo (isset($_GET['lang']) && $_GET['lang'] != ''  ? $_GET['lang'] : 'en'); ?>.js"></script>
     </head>
     <?php
-if(!empty($data)  && isset($data['page'])){
+if(!empty($data)  && isset($data['page']))
+{
+	if($_GET['page_type'] !='' && !isset($data_html))
+		{
 	$_SESSION['page_name']=$data['page_name'];
 	?>
 	<body>
@@ -665,6 +651,13 @@ if(!empty($data)  && isset($data['page'])){
         </main>
     </body>
 	<?php	
+	}
+	else {
+		//echo $data['section1']['url'];
+		echo include($data['section1']['url']);
+		
+	}
+
 }
 else if(!empty($data_video)){ 
 	?>
@@ -690,8 +683,9 @@ else if(!empty($data_video)){
 	</body>
 	<?php
 }
+
 else {
-	echo "No page found";
+echo "No page found";	
 }
 ?>
 <script>
