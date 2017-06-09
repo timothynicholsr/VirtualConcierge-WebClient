@@ -1,0 +1,83 @@
+<!doctype html>
+<!--
+    ~ Copyright (c) 2011-2014 by Animatron.
+    ~ All rights are reserved.
+-->
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>&quot;Untitled&quot; by TIM NICHOL</title>
+    <meta name="description" content="">
+
+        <meta name="ad.size" content="width=640,height=360">
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            top: 50%;
+            left: 50%;
+            display: block;
+            position: absolute;
+            background-color: #ffffff;
+        }
+
+
+    </style>
+
+
+        <script type="text/javascript" src="http://dev.hoste.us//VirtualConcierge-WebClient//apartment//images//13607079/player.js"></script>
+        
+        <script type="text/javascript">
+            function start() {
+                var WRAPPER_ID = 'target';
+                var wrapper = document.getElementById(WRAPPER_ID);
+                var inIFrame = (window.self !== window.top);
+                var queryParams = (function () {
+                    var params = {};
+                    location.search.substring(1).split('&').forEach(function (item) {
+                        var temp = item.split('=');
+                        if (temp[0]) params[temp[0]] = temp[1];
+                    });
+                    return params;
+                })();
+
+
+                var playerParams = {
+                    width: (inIFrame && window.innerWidth) || parseInt(queryParams.w) || 640,
+                    height: (inIFrame && window.innerHeight) || parseInt(queryParams.h) || 360,
+                    autoPlay: !!parseInt(queryParams.a) || false,
+                    repeat: !!parseInt(queryParams.r) || false,
+                    controlsEnabled: !!parseInt(queryParams.c) || false
+                };
+
+                if (!inIFrame) {
+                    document.body.className = 'no-iframe';
+                    wrapper.className = 'no-iframe';
+                }
+                wrapper.style.width = playerParams.width + 'px';
+                wrapper.style.height = playerParams.height + 'px';
+                wrapper.style.marginLeft = -Math.floor(playerParams.width / 2) + 'px';
+                wrapper.style.marginTop = -Math.floor(window.innerHeight / 2) + 'px';
+
+                var animation = {"meta":{"id":"3fef38596b90dfa54ab8f9f6","created":1496903482457,"modified":1496903482457,"author":"TIM NICHOL","authorUsername":"TIM.NICHOL","description":"","name":"","duration":10.0,"numberOfScenes":1,"projectAccess":{"visibility":"UNLISTED","writeAccess":[],"readAccess":["PUBLIC"]}},"anim":{"dimension":[640.0,360.0],"framerate":24.0,"loop":false,"paths":["HgABGfzgACyJcmNYHDl5AAAnLyAAA5MaPyHAACbvOAAE3d1nMfjuocAACdQ4AADrObA6cAAWRWA=","KMqhRFG0wF3x3A8=","KM2RBT++ylJQzTgw","KJfbA6l+vmnDaww=","KJGCBBbehMA=","KJxABX5AhMA="],"background":"#ffffff","elements":[[2,"Scene 1",10.0,[[1,"Shape 1","","",[10.9235,9.0238],"",4,[[4,[0.0,1.2],"",1],[4,[1.2,1.5],"",2],[4,[1.5,2.0],"",3],[4,[2.0],"",4]]],[2,"base-map-Monika2.png","","",[640.0,305.0],"",4,[[2,[],"",[0.5]],[4,[],"",5]]]]],[3,"#d63f44","","",0],[8,"http://dev.hoste.us//VirtualConcierge-WebClient//apartment//images//13607079/7afc38592b90f990506f4164.png",[1280.0,610.0]],[2,"$$$LIBRARY$$$",10.0,[]],[2,"$$$FONTS_EMBED$$$",10.0,[]]],"scenes":[0]}};
+
+                if ('anm' in window) {
+                    anm.createPlayer(WRAPPER_ID, playerParams)
+                       .load(animation,
+                             anm.importers.create('animatron'));
+                } else if ('animatron' in window) {
+                    animatron.createPlayer(WRAPPER_ID, playerParams)
+                            .load(animation);
+                }
+            }
+            var clickTag = "http://www.animatron.com";
+
+                window.addEventListener("load", start);
+        </script>
+</head>
+<body>
+
+    <div id="target"></div>
+
+</body>
+</html>
