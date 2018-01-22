@@ -1,6 +1,9 @@
 <?php 
 date_default_timezone_set('UTC');
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 <!doctype html> 
 <html lang="en">	
@@ -39,7 +42,7 @@ $page_content = json_decode($result);
 
 foreach($page_content as $page)
 	{
-	if($page->room_id==$listing_id)
+	if($page->room_id==$listing_id || $page->alias_id == $listing_id)
 		{	
 			if(!empty($page->languages))
 				{	
@@ -88,12 +91,8 @@ foreach($page_content as $page)
 											 }
 										else { 
 											
-											
-											
 											if(isset($_SESSION['page_name']) && $_SESSION['page_name'] =='')
-												{
-													
-													
+												{		
 												   if($_GET['page_type']=='video')
 													{
 													 if($_SESSION['video_url']!='')
@@ -207,6 +206,11 @@ foreach($page_content as $page)
 ?>			 		 
   <style>
 <?php 
+/*
+if(isset($data_html)){
+	header('Location: '.$data['section1']['url'].'');
+}
+* */
 if(strlen($data['button_background_color']) >= 7) 
 	{
 		$background_color = substr($data['button_background_color'],0,7);
@@ -236,7 +240,7 @@ if($_GET['page_type']=='jpg')
 }
 else {
 ?>
-.section-1 {background:url(<?php echo $data['background_image']?>) no-repeat top center; }
+.section-1 {background:url(<?php echo $data['background_one_image']?>) no-repeat top center; }
 .contentBox {min-height: 475px;position: relative;}
 <?php
 }
@@ -363,6 +367,9 @@ padding:20px;
 .section-image {padding-bottom: 100%;position: relative;float: left;width: 100%;}
 .section-image img.img { position: absolute;top: 0;left: 0; max-width: 100%;max-height: 100%;width: 100%;height: 100%;
 }
+#target{
+	margin: 0 auto !important;
+}
   </style>
     <link rel="stylesheet" href="css/calender/jquery-ui.css">
     <link rel="stylesheet" href="css/calender/jquery.timepicker.css">
@@ -373,7 +380,7 @@ padding:20px;
     <?php
 if(!empty($data)  && isset($data['page']))
 {
-	if($_GET['page_type'] !='' && !isset($data_html))
+	if($_GET['page_type'] !='')
 		{
 	$_SESSION['page_name']=$data['page_name'];
 	?>
@@ -393,6 +400,14 @@ if(!empty($data)  && isset($data['page']))
 		   
 			<?php  
 		  }
+		  else if($_GET['page_type'] == 'html' && isset($data_html)){
+							?>
+						
+								 <h1><?php echo (isset($data['section1']) ? strtoupper($data['section1']['title']) : '');?></h1>
+						   
+							<?php
+
+						}
 		  else {
 		  ?>
 		  
@@ -402,30 +417,51 @@ if(!empty($data)  && isset($data['page']))
 			 ?>           
                 </header>
                 <!-- header end -->
-                <div class="contentBox section-1">
+                
 					<?php if(isset($_GET['page_type']) && $_GET['page_type'] == 'jpg'){?>
+						<div class="contentBox section-1">
 						
-						<div class="section-text">
-								 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
-						 </div>
-						 <div class="section-image">
-						  <?php
-						if($_GET['page_type']=='jpg')
-							{
-								?> 
-						<img src="<?php echo $data['section1'] ['url']?>" class='img'>
-							<?php  
-							}
-						else 
-							{
+										<div class="section-text">
+												 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
+										 </div>
+										 <div class="section-image">
+										  <?php
+										if($_GET['page_type']=='jpg')
+											{
+												?> 
+										<img src="<?php echo $data['section1'] ['url']?>" class='img'>
+											<?php  
+											}
+										else 
+											{
 
-							}
-						?>
-						 </div>
-						<?php }else{?>
+											}
+										?>
+										 </div>
+						<?php }
+						else if($_GET['page_type'] == 'html' && isset($data_html)){
+							
+							?>
+							<div class="contentBox section-1">
+								<style>
+								.contentBox{
+									padding:0px !important;
+								}
+								</style>
+							<?php
+							//$f = file_get_contents($data['section1']['url']);
+							$f = file_get_contents($data['section1']['url']);
+							$f_text=str_replace("position: absolute;","",$f);
+							$f_text_val=str_replace("%","",$f_text);
+						
+							print_r($f_text_val);
+						//	print_r($f);
+						}
+						else{?>
+							<div class="contentBox section-1">
 							<div class="section-text first_heading">
 								 <h3><?php echo (isset($data['section2']) ? strtoupper($data['section2']['text']) : '');?></h3>
-						 </div>
+						    </div>
 						
 						<?php }?>
 						
@@ -652,11 +688,7 @@ if(!empty($data)  && isset($data['page']))
     </body>
 	<?php	
 	}
-	else {
-		//echo $data['section1']['url'];
-		echo include($data['section1']['url']);
-		
-	}
+	
 
 }
 else if(!empty($data_video)){ 
